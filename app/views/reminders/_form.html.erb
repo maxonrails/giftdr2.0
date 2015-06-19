@@ -1,9 +1,18 @@
 <%= form_for @reminder do |r| %>
-
   <%= fields_for @person do |rp| %>
+  <%= fields_for @reminder_type do |rrt| %>
+  <%= fields_for @interest do |ri| %>
   <div class="form-group">
     <%= rp.label :name, "name of person" %>
     <%= rp.text_field :name, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= rrt.label :event, "event" %>
+    <%= rrt.text_field :event, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= ri.label :name, "interests" %>
+    <%= ri.text_field :name, class:'form-control' %>
   </div>
   <div class="form-group">
     <%= r.label :when, "date" %>
@@ -18,6 +27,7 @@
   <div class="form-group">
     <%= r.submit class:'btn btn-primary' %>
   </div>
-
+  <% end %>
+  <% end %>
   <% end %>
 <% end %>
