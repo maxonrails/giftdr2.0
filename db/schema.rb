@@ -63,10 +63,16 @@ ActiveRecord::Schema.define(version: 20150619020248) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "image_url"
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
+  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "person_interests", "interests"
   add_foreign_key "person_interests", "people"
