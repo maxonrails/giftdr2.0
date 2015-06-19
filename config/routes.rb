@@ -1,35 +1,8 @@
 Rails.application.routes.draw do
-  get 'persons/index'
+  root 'pages#home'
 
-  get 'persons/show'
-
-  get 'persons/new'
-
-  get 'persons/edit'
-
-  get 'reminders/index'
-
-  get 'reminders/show'
-
-  get 'reminders/new'
-
-  get 'reminders/edit'
-
-  get 'users/index'
-
-  get 'users/show'
-
-  get 'users/new'
-
-  get 'users/edit'
-
-  get 'user/index'
-
-  get 'user/show'
-
-  get 'user/edit'
-
-  get 'user/new'
+  resources :users
+  resources :reminders
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
