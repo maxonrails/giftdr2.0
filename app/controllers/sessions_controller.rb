@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.name}!"
       @user.save
+      UserMailer.welcome(@user).deliver
     rescue
       flash[:warning] = "There was an error while trying to authenticate you..."
     end
