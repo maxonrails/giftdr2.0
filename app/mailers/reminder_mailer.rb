@@ -5,9 +5,9 @@ class ReminderMailer < ApplicationMailer
   #
   #   en.reminder_mailer.reminder.subject
   #
-  def reminder
+  def reminder user
     @greeting = "Hi"
 
-    mail to: "to@example.org"
+    mail to: user.email
   end
 end

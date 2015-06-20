@@ -7,7 +7,8 @@ end
 task :send_email => :environment do
   Reminder.all.each do |r|
     puts r.when.change(sec:0)
+    if r.when.change(sec:0) == Time.now.change(sec:0)
+      ReminderMailer.reminder(r.user).deliver
+    end
   end
-  @reminders = Reminder.all
-  @users = User.all
 end
