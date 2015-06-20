@@ -25,7 +25,7 @@ class RemindersController < ApplicationController
 		@reminder_type.reminders << @reminder
 
   	@reminder.user_id = current_user.id
-  	if @reminder.save && @person.save && @reminder_type.save 
+  	if @reminder.save && @person.save && @reminder_type.save
   		redirect_to reminders_path
   	else
   		render :new
@@ -35,6 +35,33 @@ class RemindersController < ApplicationController
   def edit
   end
 
+  def etsy
+
+  end
+
+  def amazon_api
+    @keyword = params[:search]
+
+    request = Vacuum.new('US')
+    request.configure(
+      aws_access_key_id: ENV['aws_access_key_id'],
+      aws_secret_access_key: ENV['aws_secret_access_key']
+      )
+
+    params = {
+        'SearchIndex' => 'All',
+        'Keywords'=> @keyword,
+        'ResponseGroup' => "ItemAttributes,Images"
+      }
+
+      ## DEFINES THE REQUEST RETURN
+      raw_products = request.item_search(query: params)
+      hashed_products = raw_products.to_h
+      ## PUTS SPECIFICS OF HASHED SEARCH RESPONSE INTO AN ARRAY
+      @products = hashed_products['ItemSearchResponse']['Items']['Item']
+
+      puts @products
+  end
 
 private
 	def reminder_params
