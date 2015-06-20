@@ -1,18 +1,20 @@
 <h1>Reminders</h1>
 <% @reminders.each do |reminder| %>
-<p>
-  name: <%= reminder.person.name %>
-</p>
-<p>
-  event: <%= reminder.reminder_type.event %>
-</p>
-<p>
-  <% reminder.person.interests.each do |interest| %>
-  interests: <%= interest.name %>
-  <% end %>
-</p>
-<p>
-  date: <%= reminder.when.strftime("%D %r") %>
-</p>
+<div class="panel panel-body">
+  <p>
+    name: <%= reminder.person.name %>
+  </p>
+  <p>
+    event: <%= reminder.reminder_type.event %>
+  </p>
+  <p>
+    <% reminder.person.interests.each do |interest| %>
+    interests: <%= interest.name %>
+    <% end %>
+  </p>
+  <p>
+    date: <%= reminder.when.strftime("%D %r") %>
+  </p>
+</div>
 <% end %>
 <%= link_to "New Reminder", new_reminder_path, class:'btn btn-default' %>
