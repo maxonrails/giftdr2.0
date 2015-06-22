@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
