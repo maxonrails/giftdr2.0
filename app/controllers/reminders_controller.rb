@@ -1,5 +1,8 @@
 class RemindersController < ApplicationController
+require 'pry'
 	before_action :find_reminder, only:[:show,:edit,:update,:destroy]
+
+
   def index
   	@reminders = Reminder.all
   end
@@ -42,10 +45,12 @@ class RemindersController < ApplicationController
   def amazon_api
     @keyword = params[:search]
 
+
     request = Vacuum.new('US')
     request.configure(
       aws_access_key_id: ENV['aws_access_key_id'],
-      aws_secret_access_key: ENV['aws_secret_access_key']
+      aws_secret_access_key: ENV['aws_secret_access_key'],
+      associate_tag: ENV['associate_tag']
       )
 
     params = {
@@ -56,11 +61,11 @@ class RemindersController < ApplicationController
 
       ## DEFINES THE REQUEST RETURN
       raw_products = request.item_search(query: params)
+      binding.pry
       hashed_products = raw_products.to_h
       ## PUTS SPECIFICS OF HASHED SEARCH RESPONSE INTO AN ARRAY
       @products = hashed_products['ItemSearchResponse']['Items']['Item']
 
-      puts @products
   end
 
 private

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-
+get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
   resources :users
   resources :reminders
   resources :sessions
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
-  get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
