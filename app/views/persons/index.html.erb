@@ -1,14 +1,12 @@
-<h1>Person Interest</h1>
 
-    <% @persons.each do |person| %>
-        <%= person.name %>
-    <% end %>
+<h1>Persons</h1>
+
+<% @persons.each do |person| %>
+    <%= person.name %>
 
     <% person.interests.each do |interest| %>
         <%= interest.name %>
-    <% end %>
 
-<!--
-<% reminder.person.interests.each do |interest| %>
-    interests: <%= interest.name %>
-    <% end %> -->
+    <% end %>
+<% end %>
+
