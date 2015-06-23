@@ -1,3 +1,3 @@
 # giftdr2.0
 
-[![Build Status](https://travis-ci.org/ephapox/giftdr2.0.svg?branch=master)](https://travis-ci.org/<owner>/<repo>)
+[![Build Status](https://travis-ci.org/Ephapox/giftdr2.0.svg?branch=travis-ci)](https://travis-ci.org/Ephapox/giftdr2.0)
