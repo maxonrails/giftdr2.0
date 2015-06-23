@@ -1,7 +1,12 @@
 class RemindersController < ApplicationController
 	before_action :find_reminder, only:[:show,:edit,:update,:destroy]
+	before_action :logged_in?, only:[:index,:edit,:new,:destroy]
   def index
   	@reminders = Reminder.all
+		@reminder = Reminder.new
+		@person = Person.new
+		@reminder_type = ReminderType.new
+		@interest = Interest.new
   end
 
   def show
@@ -25,7 +30,8 @@ class RemindersController < ApplicationController
 		@reminder_type.reminders << @reminder
 
   	@reminder.user_id = current_user.id
-  	if @reminder.save && @person.save && @reminder_type.save 
+		@reminder.sent = false
+  	if @reminder.save && @person.save && @reminder_type.save
   		redirect_to reminders_path
   	else
   		render :new
