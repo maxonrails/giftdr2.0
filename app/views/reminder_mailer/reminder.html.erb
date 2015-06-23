@@ -1,5 +1,21 @@
-<h1>ReminderMailer#reminder</h1>
+<h1>Giftdr Reminder</h1>
 
 <p>
-  <%= @greeting %>, find me in app/views/reminder_mailer/reminder.html.erb
+  <%= @greeting %>
+</p>
+<% @user.reminders.each do |r| %>
+  <% if !r.sent %>
+    <p>
+      <strong>reminder was set for: </strong><%= r.when %>
+    </p>
+    <p>
+      <strong>reminder user: </strong><%= r.user.name %>
+    </p>
+    <p>
+      <strong>reminder is for: </strong><%= r.person.name %>
+    </p>
+  <% end %>
+<% end %>
+<p>
+  Reminder set at <%= Time.now %>
 </p>
