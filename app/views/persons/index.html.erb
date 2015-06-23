@@ -1,2 +1,14 @@
-<h1>Persons#index</h1>
-<p>Find me in app/views/persons/index.html.erb</p>
+<h1>Person Interest</h1>
+
+    <% @persons.each do |person| %>
+        <%= person.name %>
+    <% end %>
+
+    <% person.interests.each do |interest| %>
+        <%= interest.name %>
+    <% end %>
+
+<!--
+<% reminder.person.interests.each do |interest| %>
+    interests: <%= interest.name %>
+    <% end %> -->
