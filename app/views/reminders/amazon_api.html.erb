@@ -1,0 +1,12 @@
+<%= form_tag amazon_api_path, method: :get do %>
+    <%= text_field_tag :search, nil, placeholder: 'search' %>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<% if @products != nil %>
+    <% @products.each do |f| %>
+        <%= f %>
+    <% end %>
+<%end %>>
+
+<img src="https://img1.etsystatic.com/067/0/11118522/il_570xN.784128621_8f46.jpg">
