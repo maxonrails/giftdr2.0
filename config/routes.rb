@@ -4,7 +4,7 @@ get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
   resources :users
   resources :reminders
   resources :sessions
-  resources :people
+  resources :persons
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 

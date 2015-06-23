@@ -1,4 +1,6 @@
+
 <%= form_tag amazon_api_path, method: "get" do %>
+
     <%= text_field_tag :search, nil, placeholder: 'search' %>
     <%= submit_tag "Search" %>
 <% end %>
@@ -9,3 +11,4 @@
         <%= link_to image_tag(f ['ItemAttributes']['Title']), f['DetailPageURL']%>
     <% end %>
 <%end %>
+
