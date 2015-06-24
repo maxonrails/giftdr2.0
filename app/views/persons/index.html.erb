@@ -1,12 +1,16 @@
-
+<div class='col-md-8 col-md-offset-2'>
 <h1>Persons</h1>
 
 <% @persons.each do |person| %>
-    <%= person.name %>
-
+   <div class= "col-md-6 box">
+    <h3><%= person.name %></h3>
+    <br>
+    <p>Friend Interests</p>
     <% person.interests.each do |interest| %>
         <%= interest.name %>
 
     <% end %>
+    </div>
 <% end %>
+</div>
 

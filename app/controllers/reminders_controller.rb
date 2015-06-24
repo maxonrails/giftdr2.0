@@ -1,5 +1,4 @@
 class RemindersController < ApplicationController
-require 'pry'
 	before_action :find_reminder, only:[:show,:edit,:update,:destroy]
 	before_action :logged_in?, only:[:index,:edit,:new,:destroy]
 
