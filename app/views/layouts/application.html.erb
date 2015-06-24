@@ -7,13 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h2><%= params %></h2>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <%= link_to 'Giftdr', root_path, class: 'navbar-brand' %>
       </div>
-      <div id="navbar">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <% if current_user %>
           <ul class="nav navbar-nav pull-right">
             <li><%= link_to current_user.name, reminders_path %></li>
@@ -28,6 +33,9 @@
       </div>
     </div>
   </nav>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "name alert alert-success" %>
+<% end %>
 <%= yield %>
 </body>
 </html>
