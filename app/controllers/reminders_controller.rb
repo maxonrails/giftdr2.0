@@ -67,7 +67,6 @@ require 'pry'
 
       ## DEFINES THE REQUEST RETURN
       raw_products = request.item_search(query: params)
-      binding.pry
       hashed_products = raw_products.to_h
       ## PUTS SPECIFICS OF HASHED SEARCH RESPONSE INTO AN ARRAY
       @products = hashed_products['ItemSearchResponse']['Items']['Item']
