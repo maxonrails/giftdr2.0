@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
-get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
+  get 'reminders/amazon_api' => 'reminders#amazon_api', as: :amazon_api
   resources :users
   resources :reminders
   resources :sessions

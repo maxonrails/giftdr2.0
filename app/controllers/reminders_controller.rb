@@ -43,6 +43,12 @@ class RemindersController < ApplicationController
   def edit
   end
 
+	def destroy
+	  if @reminder.destroy
+	  	redirect_to reminders_path
+	  end
+	end
+
   def etsy
 
   end
@@ -69,7 +75,6 @@ class RemindersController < ApplicationController
       hashed_products = raw_products.to_h
       ## PUTS SPECIFICS OF HASHED SEARCH RESPONSE INTO AN ARRAY
       @products = hashed_products['ItemSearchResponse']['Items']['Item']
-
   end
 
 private
