@@ -1,6 +1,5 @@
-
+<div class="container">
 <%= form_tag amazon_api_path, method: "get" do %>
-
     <%= text_field_tag :search, nil, placeholder: 'search' %>
     <%= submit_tag "Search" %>
 <% end %>
@@ -13,6 +12,6 @@
          <br>
          <%= link_to product['ItemAttributes']['Title'], product['DetailPageURL'] %>
        </div>
-
      <% end %>
 <% end %>
+</div>

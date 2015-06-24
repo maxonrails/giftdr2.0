@@ -1,20 +1,15 @@
 <div class="container">
   <!-- Button trigger modal -->
-  <div class="row">
-    <button type="button" class="btn btn-primary col-xs-4" data-toggle="modal" data-target="#myModal">
-      New Reminder
-    </button>
-  </div>
   <% @reminders.each do |reminder| %>
     <% if current_user.id == reminder.user_id %>
     <div class="">
-      <div class="panel panel-body col-md-6">
+      <div class="panel panel-body col-md-4">
         <p>name: <%= reminder.person.name %></p>
         <p>event: <%= reminder.reminder_type.event %></p>
         <p>
           interests:
           <% reminder.person.interests.each do |interest| %>
-          <%= interest.name %>
+          <%= link_to interest.name, amazon_api_path(search:interest.name) %>
           <% end %>
         </p>
         <p>
@@ -38,5 +33,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <button type="button" class="btn btn-primary col-xs-12" data-toggle="modal" data-target="#myModal">
+      New Reminder
+    </button>
   </div>
   </div>

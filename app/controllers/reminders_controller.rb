@@ -3,7 +3,7 @@ class RemindersController < ApplicationController
 	before_action :logged_in?, only:[:index,:edit,:new,:destroy]
 
   def index
-  	@reminders = Reminder.all
+  	@reminders = Reminder.order(:when)
 		@reminder = Reminder.new
 		@person = Person.new
 		@reminder_type = ReminderType.new
@@ -55,6 +55,7 @@ class RemindersController < ApplicationController
 
   def amazon_api
     @keyword = params[:search]
+
     request = Vacuum.new('US')
     request.configure(
       aws_access_key_id: ENV['aws_access_key_id'],
