@@ -14,10 +14,10 @@ class RemindersController < ApplicationController
   end
 
   def new
-  	@reminder = Reminder.new
-		@person = Person.new
-		@reminder_type = ReminderType.new
-		@interest = Interest.new
+  	# @reminder = Reminder.new
+		# @person = Person.new
+		# @reminder_type = ReminderType.new
+		# @interest = Interest.new
   end
 
   def create
@@ -36,7 +36,7 @@ class RemindersController < ApplicationController
   	if @reminder.save && @person.save && @reminder_type.save
   		redirect_to reminders_path
   	else
-  		render :new
+			render :new
   	end
   end
 

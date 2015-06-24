@@ -1,34 +1,34 @@
 <%= form_for @reminder do |r| %>
   <%= fields_for @person do |rp| %>
-  <%= fields_for @reminder_type do |rrt| %>
-  <%= fields_for @interest do |ri| %>
-  <div class="form-group">
-    <%= rp.label :name, "name of person" %>
-    <%= rp.text_field :name, class:'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= rrt.label :event, "event" %>
-    <%= rrt.text_field :event, class:'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= ri.label :name, "interests" %>
-    <%= ri.text_field :name, class:'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= r.label :when, "date" %>
-    <%= r.text_field :when, class:'form-control', ampm:true, id:"datetimepicker" %>
-  </div>
-  <div class="form-group">
-    <%= r.label :send_text %>
-    <%= r.check_box :send_text %>
-    <%= r.label :send_email %>
-    <%= r.check_box :send_email %>
-  </div>
-  <div class="form-group">
-    <%= r.submit class:'btn btn-primary' %>
-  </div>
-  <% end %>
-  <% end %>
+    <%= fields_for @reminder_type do |rrt| %>
+      <%= fields_for @interest do |ri| %>
+      <div class="form-group">
+        <%= rp.label :name, "name of person" %>
+        <%= rp.text_field :name, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= rrt.label :event, "event" %>
+        <%= rrt.text_field :event, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= ri.label :name, "interests" %>
+        <%= ri.text_field :name, class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= r.label :when, "date" %>
+        <%= r.text_field :when, class:'form-control', ampm:true, id:"datetimepicker" %>
+      </div>
+      <div class="form-group">
+        <%= r.label :send_text %>
+        <%= r.check_box :send_text %>
+        <%= r.label :send_email %>
+        <%= r.check_box :send_email %>
+      </div>
+      <div class="form-group">
+        <%= r.submit class:'btn btn-primary' %>
+      </div>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
