@@ -5,10 +5,9 @@
     <%= submit_tag "Search" %>
 <% end %>
 
-<% if @products != nil %>
+<% if @products.any? %>
 
     <% @products.each do |f| %>
         <%= link_to image_tag(f ['ItemAttributes']['Title']), f['DetailPageURL']%>
     <% end %>
 <%end %>
-
