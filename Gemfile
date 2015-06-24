@@ -35,7 +35,9 @@ gem 'vacuum', '~> 1.3.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem "figaro"
 gem 'omniauth-facebook'
-
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
 
 group :development, :test do
 

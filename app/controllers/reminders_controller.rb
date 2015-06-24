@@ -1,5 +1,4 @@
 class RemindersController < ApplicationController
-require 'pry'
 	before_action :find_reminder, only:[:show,:edit,:update,:destroy]
 	before_action :logged_in?, only:[:index,:edit,:new,:destroy]
 
@@ -28,7 +27,7 @@ require 'pry'
 		@interest = Interest.find_or_create_by(name:params[:interest][:name])
 
 		@person.reminders << @reminder
-		@person.interests << @interest
+		@person.interests << @interest if @interest.name != ""
 		@reminder_type.reminders << @reminder
 
   	@reminder.user_id = current_user.id
