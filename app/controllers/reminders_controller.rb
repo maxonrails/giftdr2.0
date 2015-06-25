@@ -25,7 +25,7 @@ class RemindersController < ApplicationController
 		@person = Person.find_or_create_by(name: params[:person][:name])
 		@reminder_type = ReminderType.find_or_create_by(event:params[:reminder_type][:event])
 		@interest = Interest.find_or_create_by(name:params[:interest][:name])
-
+		
 		@person.reminders << @reminder
 		@person.interests << @interest if @interest.name != ""
 		@reminder_type.reminders << @reminder
@@ -66,7 +66,7 @@ class RemindersController < ApplicationController
     params = {
         'SearchIndex' => 'All',
         'Keywords'=> @keyword,
-        'ResponseGroup' => "ItemAttributes,Images"
+        'ResponseGroup' => "ItemAttributes,Images,Offers"
       }
 
       ## DEFINES THE REQUEST RETURN

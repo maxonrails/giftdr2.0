@@ -8,10 +8,14 @@
 <h1>Products from the Amazon API</h1>
      <% @products.each do |product| %>
        <div class="product col-md-3 itembox">
-         <%= link_to image_tag(product['MediumImage']['URL']), product['DetailPageURL'] %>
+         <%= link_to image_tag(product['MediumImage']['URL']), product['DetailPageURL'] if product['MediumImage'] %>
          <br>
-         <%= link_to product['ItemAttributes']['Title'], product['DetailPageURL'] %>
+         <%= link_to product['ItemAttributes']['Title'], product['DetailPageURL'] if product['ItemAttributes']['Title'] %>
+         <br>
+         <%= link_to product['Offers']['Offer']['OfferListing']['Price']['FormattedPrice'], product['DetailPageURL'] if product['Offers']['Offer'] %>
+         <br>
        </div>
+
      <% end %>
 <% end %>
 </div>
