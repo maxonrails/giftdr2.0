@@ -10,10 +10,22 @@
           <%= reminder.reminder_type.event.capitalize %> is on <%= reminder.when.strftime("%D") %>
         </p>
         <% end %>
-        <% @person.interests.each do |interest| %>
         <p>
+          interests:
+        <% @person.interests.each do |interest| %>
           <%= interest.name %>
+        <% end %>
         </p>
+        <%= form_for @person do |p| %>
+          <%= fields_for @interest do |i| %>
+          <div class="form-group">
+            <%= i.label :name %>
+            <%= i.text_field :name, class:'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= i.submit class:'btn btn-primary' %>
+          </div>
+          <% end %>
         <% end %>
       </div>
     </div>

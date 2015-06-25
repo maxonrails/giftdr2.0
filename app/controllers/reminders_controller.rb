@@ -27,7 +27,6 @@ class RemindersController < ApplicationController
   	@reminder.user_id = current_user.id
 		# sent the sent email/text attribute to false before saving
 		@reminder.sent = false
-		binding.pry
   	if @reminder.save && @person.save && @reminder_type.save
   		redirect_to person_path(@person.id)
   	else
