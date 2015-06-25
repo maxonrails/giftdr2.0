@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150619020248) do
     t.datetime "when"
     t.boolean  "send_text"
     t.boolean  "send_email"
+    t.boolean  "sent"
     t.integer  "user_id"
     t.integer  "person_id"
     t.integer  "reminder_type_id"
