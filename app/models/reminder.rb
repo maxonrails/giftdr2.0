@@ -1,5 +1,5 @@
 class Reminder < ActiveRecord::Base
-	validates :when, presence: true			
+	validates :when, presence: true
 
   belongs_to :user
   belongs_to :person

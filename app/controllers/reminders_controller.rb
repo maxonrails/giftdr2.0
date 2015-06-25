@@ -1,4 +1,5 @@
 class RemindersController < ApplicationController
+
 	before_action :find_reminder, only:[:show,:edit,:update,:destroy]
 	before_action :logged_in?, only:[:index,:edit,:new,:destroy]
 
@@ -7,12 +8,9 @@ class RemindersController < ApplicationController
 		@reminder = Reminder.new
 		@person = Person.new
 		@reminder_type = ReminderType.new
-		@interest = Interest.new
   end
 
   def show
-		@person = @reminder.person
-		@interest = Interest.new
   end
 
   def new
@@ -21,23 +19,22 @@ class RemindersController < ApplicationController
   def create
   	@reminder = Reminder.new(reminder_params)
 		@person = Person.find_or_create_by(name: params[:person][:name])
-		@reminder_type = ReminderType.find_or_create_by(event:params[:reminder_type][:event])
 
-		@interest = Interest.find_or_create_by(name:params[:interest][:name])
-		@person.interests << @interest if @interest.name != ""
+		@reminder_type = ReminderType.find_or_create_by(event:params[:reminder_type][:event])
 
 		@person.reminders << @reminder
 		@reminder_type.reminders << @reminder
-
   	@reminder.user_id = current_user.id
+		# sent the sent email/text attribute to false before saving
 		@reminder.sent = false
-
+		binding.pry
   	if @reminder.save && @person.save && @reminder_type.save
-  		redirect_to reminders_path
+  		redirect_to person_path(@person.id)
   	else
 			render :new
   	end
   end
+
 
   def edit
   end

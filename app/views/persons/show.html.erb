@@ -1,2 +1,21 @@
-<h1>Persons#show</h1>
-<p>Find me in app/views/persons/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 panel panel-body">
+      <h1>
+        <%= @person.name %>
+      </h1>
+      <div class="detail-wrapper">
+        <% @person.reminders.each do |reminder| %>
+        <p>
+          <%= reminder.reminder_type.event.capitalize %> is on <%= reminder.when.strftime("%D") %>
+        </p>
+        <% end %>
+        <% @person.interests.each do |interest| %>
+        <p>
+          <%= interest.name %>
+        </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
