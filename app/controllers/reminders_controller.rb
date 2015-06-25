@@ -11,23 +11,22 @@ class RemindersController < ApplicationController
   end
 
   def show
+		@person = @reminder.person
+		@interest = Interest.new
   end
 
   def new
-  	# @reminder = Reminder.new
-		# @person = Person.new
-		# @reminder_type = ReminderType.new
-		# @interest = Interest.new
   end
 
   def create
   	@reminder = Reminder.new(reminder_params)
 		@person = Person.find_or_create_by(name: params[:person][:name])
 		@reminder_type = ReminderType.find_or_create_by(event:params[:reminder_type][:event])
+
 		@interest = Interest.find_or_create_by(name:params[:interest][:name])
-		
-		@person.reminders << @reminder
 		@person.interests << @interest if @interest.name != ""
+
+		@person.reminders << @reminder
 		@reminder_type.reminders << @reminder
 
   	@reminder.user_id = current_user.id
@@ -53,7 +52,7 @@ class RemindersController < ApplicationController
 
   end
 
-  def amazon_api
+	def amazon_api
     @keyword = params[:search]
 
     request = Vacuum.new('US')
