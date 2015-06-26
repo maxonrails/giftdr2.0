@@ -15,5 +15,7 @@ task :send_email => :environment do
   end
 end
 
+# remove post rake task to remove sent reminders.
+
 # loop through every user in the database
 # for each user, send an email with all reminders that have not been sent.
