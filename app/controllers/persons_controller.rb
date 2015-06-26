@@ -9,7 +9,7 @@ class PersonsController < ApplicationController
     @keyword = params[:search]
 		@type = params[:type]
 		@category = [
-			['All'], ['DVD'], ['Electronics'], ['Toys'], ['VideoGames'], ['PCHardware'], ['Tools'], ['SportingGoods'], ['Books'], ['Software'], ['Music'], ['GourmetFood'], ['Kitchen'], ['Apparel'],['Music'],['Video']
+			'All', 'DVD', 'Electronics', 'Toys', 'VideoGames', 'PCHardware', 'Tools', 'SportingGoods', 'Books', 'Software', 'Kitchen', 'Apparel','Music','Video'
 		]
 
     request = Vacuum.new('US')

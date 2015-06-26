@@ -24,9 +24,22 @@
         </div>
         <p>
           <% @person.interests.last(5).each do |interest| %>
-              <p><%= link_to interest.name, person_path(search:interest.name, type:'All') %></p>
+            <% if params[:type] %>
+              <p class="active"><%= link_to interest.name, person_path(search:interest.name, type:params[:type]) %></p>
+            <% else %>
+              <p><%= link_to interest.name, person_path(search:interest.name, type:"All") %></p>
+            <% end %>
           <% end %>
         </p>
+        <ul class="nav nav-pills nav-justified">
+          <% @category.each do |c| %>
+            <% if params[:type] == c %>
+              <li class="active"><%= link_to c, person_path(search:params[:search], type:c), class:"" %></li>
+              <% else %>
+              <li><%= link_to c, person_path(search:params[:search], type:c), class:"" %></li>
+            <% end %>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
