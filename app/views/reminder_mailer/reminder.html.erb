@@ -4,7 +4,7 @@
   <%= @greeting %>
 </p>
 <% @user.reminders.each do |r| %>
-  <% if !r.sent %>
+  <% if !r.sent && r.when < Time.now %>
     <p>
       <strong>reminder was set for: </strong><%= r.when %>
     </p>
