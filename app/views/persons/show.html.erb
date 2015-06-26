@@ -13,7 +13,7 @@
         <p>
           interests:
         <% @person.interests.each do |interest| %>
-          <%= interest.name %>
+          <%= link_to interest.name, amazon_api_path(search:interest.name) %>
         <% end %>
         </p>
         <%= form_for @person do |p| %>

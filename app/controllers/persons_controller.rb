@@ -7,16 +7,7 @@ class PersonsController < ApplicationController
   def show
     @interest = Interest.new
   end
-
-  def create
-    @interest = Interest.new
-    @person.interests << @interest
-    binding.pry
-    if @interest.save
-      redirect_to person_path(@person.id)
-    end
-  end
-
+  
   def update
     @interest = Interest.find_or_create_by(interest_params)
     @person.interests << @interest

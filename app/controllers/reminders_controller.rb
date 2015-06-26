@@ -34,9 +34,12 @@ class RemindersController < ApplicationController
   	end
   end
 
-
   def edit
   end
+
+	def update
+	  #code
+	end
 
 	def destroy
 	  if @reminder.destroy
