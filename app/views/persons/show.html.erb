@@ -1,2 +1,33 @@
-<h1>Persons#show</h1>
-<p>Find me in app/views/persons/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 panel panel-body">
+      <h1>
+        <%= @person.name %>
+      </h1>
+      <div class="detail-wrapper">
+        <% @person.reminders.each do |reminder| %>
+        <p>
+          <%= reminder.reminder_type.event.capitalize %> is on <%= reminder.when.strftime("%D") %>
+        </p>
+        <% end %>
+        <p>
+          interests:
+        <% @person.interests.each do |interest| %>
+          <%= link_to interest.name, amazon_api_path(search:interest.name) %>
+        <% end %>
+        </p>
+        <%= form_for @person do |p| %>
+          <%= fields_for @interest do |i| %>
+          <div class="form-group">
+            <%= i.label :name %>
+            <%= i.text_field :name, class:'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= i.submit class:'btn btn-primary' %>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
