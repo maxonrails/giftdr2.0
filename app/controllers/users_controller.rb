@@ -2,10 +2,10 @@ class UsersController < ApplicationController
   before_action :find_user, only:[:show,:edit,:destroy,:update]
   before_action :logged_in?, only:[:show,:edit,:update,:destroy]
   def index
+    @users = User.all
   end
 
   def show
-
   end
 
   def new
@@ -27,6 +27,7 @@ private
   def user_params
     params.require(:user).permit(:name,:email,:phone)
   end
+
   def find_user
     @user = User.find(params[:id])
   end
