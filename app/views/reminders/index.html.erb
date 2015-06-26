@@ -9,10 +9,12 @@
         <h2>on <%= reminder.when.strftime("%D") %></h2>
         <p>
           gift suggestions:
+          <ul>
           <% reminder.person.interests.each do |interest| %>
-          <%= link_to interest.name, amazon_api_person_path(reminder.person.id,search:interest.name) %>
+          <li><%= link_to interest.name, amazon_api_person_path(reminder.person.id,search:interest.name) %></li>
           <% end %>
-        </p>
+          </ul>
+        </p
         <%= link_to "delete", reminder_path(reminder.id), method: :delete, data:{confirm:"are you sure"}, class:"btn btn-danger" %>
       </div>
     </div>
