@@ -54,28 +54,21 @@ RSpec.describe UsersController do
     end 
   end 
 
-  describe 'PATCH #update' do
-	context "with valid attributes" do
-		it "updates the contact in the database"
-		it "redirects to the contact"
-	end
-
-	context "with invalid attributes" do
-	 	it "does not update the contact"
-	 	it "re-renders the :edit template"
-	end
-  end
-
-  describe "POST create" do 
-  	context "with valid attributes" do
-	  	it "saves a new user"
-	  	it "redirects to show page" 
-	end  
-
-  	context "with invalid attributes" do
-  		it "doesn't save a new user"
-  		it "re-renders the new template" 
-  	end 
+  describe 'PATCH #update' do 
+    it "with valid attributes, redirects to the contact" do
+      user = User.create(name: "johnny karate", uid: 1, provider: "facebook")  
+      # session[:user_id] = user.id
+      post :update, id: user.id 
+      expect(response.body).to match /redirected/im 
+  		# it "updates the contact in the database"
+    end 
   end 
 
-end    
+	 	it "with invalid attributes, re-renders the :edit template"
+      user = User.creat(name: "Andy Dwyer", uid: 1, provider: "facebook")
+      post :update, id: user.id
+      expect(response)
+	end
+
+
+end  
