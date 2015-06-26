@@ -52,7 +52,19 @@ class RemindersController < ApplicationController
   end
 
 	def amazon_api
+		# All—Searches through all search indices. Only five pages of items can be returned where each page contains up to five items
+		#
+		# Blended—Combines the following search indices: DVD, Electronics, Toys, VideoGames, PCHardware, Tools, SportingGoods, Books, Software, Music, GourmetFood, Kitchen, and Apparel search indices
+		#
+		# Music—Combines Classical, DigitalMusic, and MusicTracks search indices
+		#
+		# Video—Combines DVD and VHS search indices
+
     @keyword = params[:search]
+		@type = params[:type]
+		@category = [
+			['All'], ['DVD'], ['Electronics'], ['Toys'], ['VideoGames'], ['PCHardware'], ['Tools'], ['SportingGoods'], ['Books'], ['Software'], ['Music'], ['GourmetFood'], ['Kitchen'], ['Apparel'],['Music'],['Video']
+		]
 
     request = Vacuum.new('US')
     request.configure(
@@ -62,7 +74,7 @@ class RemindersController < ApplicationController
       )
 
     params = {
-        'SearchIndex' => 'All',
+        'SearchIndex' => @type,
         'Keywords'=> @keyword,
         'ResponseGroup' => "ItemAttributes,Images,Offers"
       }

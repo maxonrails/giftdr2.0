@@ -179,4 +179,17 @@ header .header-content .header-content-inner p {
 }
 .product {
   margin: 0px;
+  padding: 20px;
+  text-align: center;
+}
+.add-interest {
+  .form-control {
+    width: 30vw;
+  }
+  .form-group {
+    display: inline;
+  }
+  input {
+    display: inline;
+  }
 }
