@@ -4,17 +4,8 @@
     <% if current_user.id == reminder.user_id %>
     <div class="">
       <div class="panel panel-body col-md-6">
-        <h2><%= link_to reminder.person.name, person_path(reminder.person.id) %>
-        has a <%= reminder.reminder_type.event %></h2>
-        <h2>on <%= reminder.when.strftime("%D") %></h2>
-        <p>
-          gift suggestions:
-          <ul>
-          <% reminder.person.interests.each do |interest| %>
-          <li><%= link_to interest.name, amazon_api_person_path(reminder.person.id,search:interest.name) %></li>
-          <% end %>
-          </ul>
-        </p>
+        <h2><%= link_to reminder.person.name +
+        " has a " + reminder.reminder_type.event + " on " + reminder.when.strftime("%D"), person_path(reminder.person.id) %></h2>
         <%= link_to "delete", reminder_path(reminder.id), method: :delete, data:{confirm:"are you sure"}, class:"btn btn-danger" %>
       </div>
     </div>
@@ -35,7 +26,7 @@
     </div>
   </div>
   <div class="row">
-    <button type="button" class="btn btn-primary col-xs-12" data-toggle="modal" data-target="#myModal">
+    <button type="button" class="btn btn-primary col-xs-12 btn-lg" data-toggle="modal" data-target="#myModal">
       New Reminder
     </button>
   </div>

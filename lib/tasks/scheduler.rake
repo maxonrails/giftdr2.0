@@ -5,9 +5,12 @@ task :update_feed => :environment do
 end
 
 task :send_email => :environment do
-  User.all.each do |u|
-    ReminderMailer.reminder(u).deliver
+  Reminder.all.each do |r|
+    if r.when < Time.now && !r.sent && r.send_email
+      ReminderMailer.reminder(u).deliver
+    end
   end
 end
+
 # loop through every user in the database
 # for each user, send an email with all reminders that have not been sent.

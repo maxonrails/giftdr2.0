@@ -1,33 +1,73 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 panel panel-body">
-      <h1>
-        <%= @person.name %>
-      </h1>
-      <div class="detail-wrapper">
+      <div class="detail-wrapper text-center">
+        <h1>
+          <%= @person.name %>
+        </h1>
         <% @person.reminders.each do |reminder| %>
         <p>
           <%= reminder.reminder_type.event.capitalize %> is on <%= reminder.when.strftime("%D") %>
         </p>
         <% end %>
-        <p>
-          interests:
-        <% @person.interests.each do |interest| %>
-          <%= link_to interest.name, amazon_api_path(search:interest.name) %>
-        <% end %>
-        </p>
+        <div class="row add-interest container">
         <%= form_for @person do |p| %>
           <%= fields_for @interest do |i| %>
           <div class="form-group">
-            <%= i.label :name %>
             <%= i.text_field :name, class:'form-control' %>
           </div>
           <div class="form-group">
-            <%= i.submit class:'btn btn-primary' %>
+            <%= i.submit 'Add Interest', class:'btn btn-primary' %>
           </div>
           <% end %>
         <% end %>
+        </div>
+        <p>
+          <% @person.interests.last(5).each do |interest| %>
+            <% if params[:type] %>
+              <p class="active"><%= link_to interest.name, person_path(search:interest.name, type:params[:type]) %></p>
+            <% else %>
+              <p><%= link_to interest.name, person_path(search:interest.name, type:"All") %></p>
+            <% end %>
+          <% end %>
+        </p>
+        <ul class="nav nav-pills nav-justified">
+          <% @category.each do |c| %>
+            <% if params[:type] == c %>
+              <li class="active"><%= link_to c, person_path(search:params[:search], type:c), class:"" %></li>
+              <% else %>
+              <li><%= link_to c, person_path(search:params[:search], type:c), class:"" %></li>
+            <% end %>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
+
+  <% if @products != nil %>
+    <div class="row">
+       <% @products.each do |product| %>
+         <div class="product col-md-3 thumbnail">
+           <% if product['MediumImage'] %>
+           <%= link_to image_tag(product['MediumImage']['URL']), product['DetailPageURL']  %>
+           <% else %>
+           <img src="https://placehold.it/160?text=no+image" alt="" />
+           <% end %>
+           <div class="caption">
+             <p>
+               <%= link_to truncate(product['ItemAttributes']['Title']), truncate(product['DetailPageURL']) if product['ItemAttributes']['Title'] %>
+             </p>
+             <h5>
+               <%#= link_to product['Offers']['Offer']['OfferListing']['Price']['FormattedPrice'], product['DetailPageURL'] if product['Offers']['Offer'] %>
+             </h5>
+           </div>
+
+           <h4>
+
+           </h4>
+         </div>
+       <% end %>
+     </div>
+  <% end %>
+
 </div>
