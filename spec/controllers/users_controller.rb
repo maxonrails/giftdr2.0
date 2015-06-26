@@ -54,7 +54,7 @@ RSpec.describe UsersController do
     end 
   end 
 
-  describe 'PATCH #update' do 
+  describe 'PATCH update' do 
     it "with valid attributes, redirects to the contact" do
       user = User.create(name: "johnny karate", uid: 1, provider: "facebook")  
       # session[:user_id] = user.id
@@ -62,12 +62,15 @@ RSpec.describe UsersController do
       expect(response.body).to match /redirected/im 
   		# it "updates the contact in the database"
     end 
-  end 
+  end
 
-	 	it "with invalid attributes, re-renders the :edit template"
-      user = User.creat(name: "Andy Dwyer", uid: 1, provider: "facebook")
-      post :update, id: user.id
-      expect(response)
+	describe 'PATCH update' do 
+    it "with invalid attributes, re-renders the :edit template" do 
+      user = User.create(name: "Andy Dwyer", uid: 1, provider: "facebook")
+      session[:user_id] = user.id 
+      get :edit, id: user.id  
+      expect(response.body).to render_template :edit 
+    end 
 	end
 
 
